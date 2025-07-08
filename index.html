@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Bill Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rent Bill Generator</h1>
+            <p>Generate rent bills with meter readings</p>
+        </header>
+
+        <div class="bill-form">
+            <div class="form-section">
+                <h3>Tenant Information</h3>
+                <div class="form-row">
+                    <input type="text" id="tenantName" placeholder="Tenant Name" required>
+                    <input type="text" id="propertyAddress" placeholder="Property Address" required>
+                </div>
+                <div class="form-row">
+                    <input type="date" id="billDate" required>
+                    <input type="text" id="billMonth" placeholder="Bill Month (e.g., January 2024)" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Meter Readings</h3>
+                <div class="meter-section">
+                    <div class="meter-inputs">
+                        <div class="input-group">
+                            <label>Previous Reading</label>
+                            <input type="number" id="previousReading" placeholder="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Current Reading</label>
+                            <input type="number" id="currentReading" placeholder="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Units Consumed</label>
+                            <input type="number" id="unitsConsumed" placeholder="0" readonly>
+                        </div>
+                    </div>
+                    <div class="rate-section">
+                        <div class="input-group">
+                            <label>Rate per Unit (₹)</label>
+                            <input type="number" id="ratePerUnit" value="8" step="0.01" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Electricity Bill (₹)</label>
+                            <input type="number" id="electricityBill" placeholder="0" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Additional Charges</h3>
+                <div class="charges-section">
+                    <div class="input-group">
+                        <label>Rent (₹)</label>
+                        <input type="number" id="houseRent" placeholder="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Water Charges (₹)</label>
+                        <input type="number" id="waterCharges" placeholder="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Maintenance (₹)</label>
+                        <input type="number" id="maintenance" placeholder="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Other Services (₹)</label>
+                        <input type="number" id="otherServices" placeholder="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Bill Summary</h3>
+                <div class="summary-section">
+                    <div class="summary-item">
+                        <span>Rent:</span>
+                        <span id="summaryRent">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Electricity Bill:</span>
+                        <span id="summaryElectricity">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Water Charges:</span>
+                        <span id="summaryWater">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Maintenance:</span>
+                        <span id="summaryMaintenance">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Other Services:</span>
+                        <span id="summaryOther">₹0</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Amount:</span>
+                        <span id="totalAmount">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" id="calculateBtn" class="btn-calculate">Calculate Bill</button>
+                <button type="button" id="generatePdfBtn" class="btn-generate">Generate PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
